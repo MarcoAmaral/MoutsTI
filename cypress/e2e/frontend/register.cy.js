@@ -1,13 +1,14 @@
 import RegisterPage from '../../support/pages/RegisterPage'
 import { disposableUser } from '../../support/testData'
 import { REDIRECT_TIMEOUT_MS } from '../../support/constants'
+import { apiUrl } from '../../support/api'
 
 describe('Register @e2e @usuarios', () => {
   let userId
 
   afterEach(() => {
     if (userId) {
-      cy.request('DELETE', `${Cypress.expose('apiUrl')}/usuarios/${userId}`)
+      cy.deleteUser(userId)
       userId = null
     }
   })
@@ -21,7 +22,7 @@ describe('Register @e2e @usuarios', () => {
     cy.url({ timeout: REDIRECT_TIMEOUT_MS }).should('include', '/home')
     cy.contains('Logout').should('be.visible')
 
-    cy.request('GET', `${Cypress.expose('apiUrl')}/usuarios?email=${user.email}`).then((res) => {
+    cy.request('GET', apiUrl(`/usuarios?email=${user.email}`)).then((res) => {
       userId = res.body.usuarios[0]._id
     })
   })

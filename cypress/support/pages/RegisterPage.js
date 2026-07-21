@@ -28,7 +28,7 @@ class RegisterPage {
     this.fillName(user.nome)
     this.fillEmail(user.email)
     this.fillPassword(user.password)
-    this.submit()
+    return this.submit()
   }
 }
 

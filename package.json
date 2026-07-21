@@ -5,22 +5,33 @@
   "author": "Marco Amaral",
   "private": true,
   "scripts": {
-    "postinstall": "npm run report:clean",
+    "postinstall": "npm run clean:all",
+    "clean:all": "rimraf cypress/reports cypress/screenshots",
     "cypress:open": "cypress open",
-    "cypress:run": "rimraf cypress/reports/mocha && cypress run; npm run report:build",
+    "cypress:run": "rimraf cypress/reports/mocha && cypress run; CY_EXIT=$?; npm run report:build; exit $CY_EXIT",
+    "test:with-image-capture": "rimraf cypress/reports/mocha && cypress run --expose captureAll=true; CY_EXIT=$?; npm run report:build; exit $CY_EXIT",
     "report:build": "npm run report:merge && npm run report:generate && rimraf cypress/reports/mocha cypress/reports/report.json",
     "report:merge": "mochawesome-merge cypress/reports/mocha/*.json > cypress/reports/report.json",
     "report:generate": "marge cypress/reports/report.json --reportDir cypress/reports --inline --reportFilename \"report-[datetime]\" --timestamp isoDateTime",
     "report:clean": "rimraf cypress/reports",
     "report:open": "http-server cypress/reports -o -p 4873",
-    "test": "npm run cypress:run"
+    "test": "npm run cypress:run",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"cypress/**/*.js\" cypress.config.js eslint.config.mjs",
+    "format:check": "prettier --check \"cypress/**/*.js\" cypress.config.js eslint.config.mjs"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "cypress": "^15.18.1",
+    "eslint": "^10.7.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-cypress": "^6.4.3",
     "http-server": "^14.1.1",
     "mochawesome": "^7.1.4",
     "mochawesome-merge": "^5.1.1",
     "mochawesome-report-generator": "^6.3.2",
+    "prettier": "^3.9.6",
     "rimraf": "^6.1.3"
   }
 }
