@@ -1,0 +1,28 @@
+node_modules/
+
+# Assignment brief and AI tooling (internal/recruiter-sensitive, not for public repo)
+Teste QA.pdf
+CLAUDE.md
+.claude/
+
+# Third-party app-under-test, cloned locally for dev-tier isolation — not our code
+ServeRest/
+
+# Cypress artifacts (generated on each run)
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+*.log
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
