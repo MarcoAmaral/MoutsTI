@@ -24,6 +24,7 @@ This README describes the finished QA analysis and the automation plan built on 
 | See how the 6 automated scenarios trace back to source/risk | [`TRACEABILITY-MATRIX.md`](TRACEABILITY-MATRIX.md) |
 | Read the formal test cases (all 22, including manual ones) | [`test-cases/`](test-cases/) |
 | See the manual exploration session that grounded every assertion | [`exploratory-charters/ET-001-manual-exploration.md`](exploratory-charters/ET-001-manual-exploration.md) |
+| Manually re-execute the 6 automated scenarios step-by-step (onboarding, sign-off) | [`EXECUTION-NOTEBOOK.md`](EXECUTION-NOTEBOOK.md) |
 
 ## Why 22 scenarios, only 6 automated
 

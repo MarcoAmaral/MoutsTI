@@ -16,5 +16,5 @@ Maps each of the 6 automated scenarios from **risk → business rule / source �
 ## Reading this matrix
 
 - **Risk (Score)** ties back to `COVERAGE-MATRIX.md`'s Likelihood × Impact scoring — nothing here was picked arbitrarily.
-- **Business rule / source grounding** cites the exact controller/middleware and constant that produces the expected behavior, plus the `ET-001` exploratory session line that confirmed it live. This is what makes each assertion defensible in a technical interview — it's not "I assumed this," it's "here's the source and here's the live confirmation."
+- **Business rule / source grounding** cites the exact controller/middleware and constant that produces the expected behavior, plus the `ET-001` exploratory session line that confirmed it live — each assertion is backed by source code and a live confirmation, not an assumption.
 - **Status** will move from *Planned* → *Automated* only once the spec file exists and passes in CI on both the `staging` and `main` tiers — consistent with this project's verification-honesty rule.
