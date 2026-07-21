@@ -1,0 +1,8 @@
+{
+  "name": "moutsti-qa-tests",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "cypress": "^15.18.1"
+  }
+}
