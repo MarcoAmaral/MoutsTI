@@ -5,7 +5,7 @@ area: Auth
 type: Frontend
 priority: P0
 automate: true
-status: planned
+status: automated
 ---
 
 # TC-AUTH-001 — Login with valid credentials (client) → redirect

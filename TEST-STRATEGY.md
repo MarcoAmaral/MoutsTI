@@ -73,15 +73,15 @@ Risk score = **Likelihood (1–5) × Impact (1–5)**, applied per candidate sce
 ## 5. Entry / exit criteria
 
 **Entry (before automating a scenario):**
-- [ ] Scenario exists in `COVERAGE-MATRIX.md` with an assigned priority
-- [ ] Exact expected status code/message verified live (not just from source) — see `ET-001`
-- [ ] Traced in `TRACEABILITY-MATRIX.md` before the spec is written
+- [x] Scenario exists in `COVERAGE-MATRIX.md` with an assigned priority
+- [x] Exact expected status code/message verified live (not just from source) — see `ET-001`
+- [x] Traced in `TRACEABILITY-MATRIX.md` before the spec is written
 
 **Exit (suite considered done for this delivery):**
-- [ ] All 6 P0 scenarios automated and passing on `staging` and `main` CI tiers
-- [ ] Zero flaky runs across 3 consecutive CI executions
-- [ ] All 16 non-automated scenarios manually executed at least once, with result recorded in their `TC-*.md` file
-- [ ] No credentials/secrets present anywhere in the repo (manual review + `.gitignore` check)
+- [ ] All 6 P0 scenarios automated and passing on `staging` and `main` CI tiers — implemented and passing locally (`npm test`); CI pipeline not yet wired
+- [ ] Zero flaky runs across 3 consecutive CI executions — not applicable until CI exists; locally, one flake was found and fixed (see `TRACEABILITY-MATRIX.md`)
+- [x] All 16 non-automated scenarios manually executed at least once, with result recorded in their `TC-*.md` file
+- [x] No credentials/secrets present anywhere in the repo (manual review + `.gitignore` check)
 
 ---
 
@@ -90,3 +90,13 @@ Risk score = **Likelihood (1–5) × Impact (1–5)**, applied per candidate sce
 Deliberately scaled to a single-candidate submission, not a multi-person release gate:
 - No tag taxonomy document, no generated status-tracking system, no team sign-off workflow.
 - The execution notebook ([`EXECUTION-NOTEBOOK.md`](EXECUTION-NOTEBOOK.md)) is a single lightweight file scoped to the 6 P0 automated scenarios only — not a full per-feature notebook structure, which would be disproportionate to this assignment's scope.
+
+---
+
+## 7. Known dependency risk (accepted, not fixed)
+
+`npm audit` reports 5 vulnerabilities (1 high — RCE/DoS in `serialize-javascript`, plus related `jsdiff`/`uuid` findings), all transitive dependencies inside `mochawesome`'s own dependency tree (the HTML test-report generator), not in any package this suite ships or exposes to a network boundary.
+
+- `npm audit fix` (non-breaking) has nothing safe to apply — the only fix path is `npm audit fix --force`, which downgrades `mochawesome` from `7.1.4` to `1.5.5` (a 6-major-version regression).
+- These packages only ever process data this suite generates itself (local Cypress test results) to build a local HTML report — there is no untrusted external input reaching them, so the actual exploitability in this context is theoretical, not practical.
+- Decision: left as-is rather than downgrading a current, maintained tool for a 5+ year old one to silence a low-practical-risk finding. Revisit if `mochawesome` ships a patched release.

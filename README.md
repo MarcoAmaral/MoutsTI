@@ -10,8 +10,9 @@ Cypress + JavaScript test automation for [ServeRest](https://serverest.dev/) (AP
 |---|---|
 | Test strategy, risk analysis, coverage matrix | ✅ Done |
 | 22 formal test cases designed and manually executed at least once | ✅ Done |
-| 6 P0 scenarios automated in Cypress | ⏳ Planned — see `TRACEABILITY-MATRIX.md` |
-| Dev/Staging/Production branch structure + CI | ⏳ Planned |
+| 6 P0 scenarios automated in Cypress | ✅ Done — passing locally, see `TRACEABILITY-MATRIX.md` |
+| Dev/Staging/Production branch structure | ✅ Done |
+| CI pipeline running the suite | ⏳ Planned |
 
 This README describes the finished QA analysis and the automation plan built on top of it. Where something is not yet implemented, it's marked as such rather than described as done — see `TEST-STRATEGY.md` §5 (Entry/Exit criteria) for what "done" means on this project.
 
@@ -25,6 +26,16 @@ This README describes the finished QA analysis and the automation plan built on 
 | Read the formal test cases (all 22, including manual ones) | [`test-cases/`](test-cases/) |
 | See the manual exploration session that grounded every assertion | [`exploratory-charters/ET-001-manual-exploration.md`](exploratory-charters/ET-001-manual-exploration.md) |
 | Manually re-execute the 6 automated scenarios step-by-step (onboarding, sign-off) | [`EXECUTION-NOTEBOOK.md`](EXECUTION-NOTEBOOK.md) |
+| Read or run the automated specs | [`cypress/e2e/`](cypress/e2e/) |
+
+## How to run
+
+```bash
+npm install       # installs Cypress + reporting tooling, and clears any old report
+npm test          # runs all 6 specs against the real public instance, then builds a report
+```
+
+Each run generates a uniquely timestamped report — `cypress/reports/report-<datetime>.html` — instead of overwriting the previous one. To browse past reports: `npm run report:open` (serves `cypress/reports/` on `localhost:4873`). Reports aren't committed (`.gitignore`); a fresh `npm install` clears them out entirely.
 
 ## Why 22 scenarios, only 6 automated
 

@@ -5,7 +5,7 @@ area: Usuários
 type: API
 priority: P0
 automate: true
-status: planned
+status: automated
 ---
 
 # TC-USR-003 — `POST /usuarios` duplicate email → 400
