@@ -83,6 +83,6 @@ Risk score = **Likelihood (1–5) × Impact (1–5)**, applied per candidate sce
 
 ## 6. What this strategy deliberately does not include
 
-Scaled down from a prior, larger QA program (Kaffa Editor) used only as a *format* reference, not a *scale* reference:
-- No tag taxonomy document, no generated status-tracking system, no team sign-off workflow — this is a single-candidate submission, not a multi-person release gate.
-- No `caderno-de-testes`/execution-notebook layer — `TC-*.md` files under `test-cases/` double as both the formal test case and the manual execution record.
+Deliberately scaled to a single-candidate submission, not a multi-person release gate:
+- No tag taxonomy document, no generated status-tracking system, no team sign-off workflow.
+- The execution notebook ([`EXECUTION-NOTEBOOK.md`](EXECUTION-NOTEBOOK.md)) is a single lightweight file scoped to the 6 P0 automated scenarios only — not a full per-feature notebook structure, which would be disproportionate to this assignment's scope.
