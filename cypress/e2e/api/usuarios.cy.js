@@ -1,4 +1,4 @@
-import { disposableUser } from '../../support/testData'
+import { disposableUser, userWithWeakPassword } from '../../support/testData'
 import { apiUrl } from '../../support/api'
 
 describe('POST /usuarios @api @usuarios', () => {
@@ -39,6 +39,26 @@ describe('POST /usuarios @api @usuarios', () => {
         expect(dupRes.status).to.eq(400)
         expect(dupRes.body.message).to.eq('Este email já está sendo usado')
       })
+    })
+  })
+
+  // TC-USR-009 — known gap, not yet fixed by ServeRest: no password
+  // complexity/length enforcement. API currently returns 201 for a
+  // 1-char password; asserting the secure expected behavior (400) so
+  // this fails loudly until it's addressed, rather than silently
+  // passing on incorrect behavior. Live-verified during this session.
+  it('rejects a trivially weak password with 400 @regression @p2 @known-issue', () => {
+    const user = userWithWeakPassword()
+
+    cy.request({
+      method: 'POST',
+      url: apiUrl('/usuarios'),
+      body: user,
+      failOnStatusCode: false,
+    }).then((res) => {
+      userId = res.body._id
+
+      expect(res.status).to.eq(400)
     })
   })
 })

@@ -12,6 +12,10 @@ export function disposableUser(overrides = {}) {
   }
 }
 
+export function userWithWeakPassword(overrides = {}) {
+  return disposableUser({ password: 'a', ...overrides })
+}
+
 export function disposableProduct(overrides = {}) {
   return {
     nome: `Produto QA ${Date.now()}`,
