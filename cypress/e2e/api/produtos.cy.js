@@ -20,7 +20,7 @@ describe('POST /produtos admin authorization @api @produtos', () => {
     }).then((res) => {
       expect(res.status).to.eq(401)
       expect(res.body.message).to.eq(
-        'Token de acesso ausente, inválido, expirado ou usuário do token não existe mais',
+        'Token de acesso ausente, inválido, expirado ou usuário do token não existe mais'
       )
     })
   })
