@@ -2,7 +2,7 @@ const { defineConfig } = require('cypress')
 
 module.exports = defineConfig({
   allowCypressEnv: false,
-  video: true,
+  video: false,
   screenshotOnRunFailure: true,
   reporter: 'mochawesome',
   reporterOptions: {
@@ -16,12 +16,10 @@ module.exports = defineConfig({
     supportFile: 'cypress/support/e2e.js',
     specPattern: 'cypress/e2e/**/*.cy.js',
     setupNodeEvents(_on, config) {
-      // One folder per run (all specs in this run share it), so nothing
-      // gets deleted or overwritten and every file traces back to a
-      // single run. Videos/screenshots accumulate here between runs;
-      // `npm install` wipes them via the postinstall clean:all script.
+      // One folder per run, so nothing gets overwritten and every
+      // screenshot traces back to a single run. Accumulates between
+      // runs; `npm install` wipes it via the postinstall clean:all script.
       const runId = new Date().toISOString().replace(/[:.]/g, '-')
-      config.videosFolder = `cypress/videos/${runId}`
       config.screenshotsFolder = `cypress/screenshots/${runId}`
       return config
     },
