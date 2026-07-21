@@ -1,0 +1,40 @@
+name: tests
+
+on:
+  push:
+    branches: [dev, staging, main]
+  pull_request:
+    branches: [dev, staging, main]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Security audit (critical only — see TEST-STRATEGY.md §7 for accepted findings)
+        run: npm audit --audit-level=critical
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v7
+        with:
+          command: npm run cypress:run
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: cypress-report
+          path: cypress/reports/
+          retention-days: 14
+          if-no-files-found: ignore
+
+      - name: Upload failure screenshots
+        if: failure()
+        uses: actions/upload-artifact@v6
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots/
+          retention-days: 14
+          if-no-files-found: ignore
