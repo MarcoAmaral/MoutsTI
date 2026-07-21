@@ -39,11 +39,15 @@ This assignment authors **E2E and API-level tests only** — we don't own the Se
 
 ## 2. Environments
 
+All automated tests run against the real public targets named in the assignment brief, on every branch tier:
+
 | Tier | Frontend target | API target | Purpose |
 |---|---|---|---|
-| **dev** (local) | Patched fork of `ServeRest/front`, `localhost:3001` | Self-hosted `ServeRest/ServeRest`, `localhost:3000` | Fast, isolated local iteration — no shared-state collisions with other candidates hitting the public instance |
-| **staging** | `front.serverest.dev` | `serverest.dev` | Pre-merge regression gate against the real target |
+| **dev** | `front.serverest.dev` | `serverest.dev` | Active development branch |
+| **staging** | `front.serverest.dev` | `serverest.dev` | Pre-merge regression gate |
 | **production** (`main`) | `front.serverest.dev` | `serverest.dev` | Final gate before a Release Please version/tag is cut |
+
+Local clones of the source (`ServeRest/` — API, `ServeRestFront/` — frontend) are kept only as a **reference/knowledge base** — to ground assertions in the actual source (controllers, constants, `data-testid`s) rather than guesswork, per the approach in `ET-001`. They are not run or hosted locally; no test in this suite executes against `localhost`. The branch tiers (`dev`/`staging`/`main`) reflect promotion/review discipline, not different environments.
 
 ---
 

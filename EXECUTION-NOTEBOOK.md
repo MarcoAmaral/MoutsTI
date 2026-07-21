@@ -173,7 +173,7 @@ Every procedure below traces back to its source `TC-*` file and to the `ET-001` 
 |---|---|
 | **Executed by** | _______________________________________________ |
 | **Execution date** | _______________________________________________ |
-| **Environment** | ☐ staging (`front.serverest.dev` / `serverest.dev`) ☐ dev (local) |
+| **Environment** | `front.serverest.dev` / `serverest.dev` (public instance) |
 | **Total procedures** | 6 |
 | **Passed** | ___ |
 | **Failed** | ___ |

@@ -41,15 +41,9 @@ The assignment asks for 3 E2E + 3 API scenarios. Source review of `ServeRest/Ser
 - Cypress + JavaScript
 - Release Please + Conventional Commits for versioning/changelog (`.github/workflows/release-please.yml`)
 
-## Environments (planned)
+## Environments
 
-| Tier | Frontend | API | Purpose |
-|---|---|---|---|
-| dev (local) | Patched fork of `ServeRest/front`, `localhost:3001` | Self-hosted `ServeRest/ServeRest`, `localhost:3000` | Isolated local iteration |
-| staging | `front.serverest.dev` | `serverest.dev` | Pre-merge regression gate |
-| production (`main`) | `front.serverest.dev` | `serverest.dev` | Final gate, Release Please cuts a version |
-
-Full rationale in `TEST-STRATEGY.md` §2.
+All tests run against the real public targets on every branch tier — `front.serverest.dev` (frontend) and `serverest.dev` (API). The `dev`/`staging`/`main` branches reflect promotion/review discipline, not different hosted environments. Local source clones are kept only as a reference for grounding assertions, not executed. Full rationale in `TEST-STRATEGY.md` §2.
 
 ## Security
 
