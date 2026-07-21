@@ -13,6 +13,7 @@ ServeRestFront/
 cypress/videos/
 cypress/screenshots/
 cypress/downloads/
+cypress/reports/
 
 # Env / secrets
 .env
