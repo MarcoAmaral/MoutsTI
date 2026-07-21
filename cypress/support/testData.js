@@ -16,6 +16,14 @@ export function userWithWeakPassword(overrides = {}) {
   return disposableUser({ password: 'a', ...overrides })
 }
 
+export function adminUserWithXssName(overrides = {}) {
+  return disposableUser({
+    nome: '<img src=x onerror="window.xssTriggered = true">',
+    administrador: 'true',
+    ...overrides,
+  })
+}
+
 export function disposableProduct(overrides = {}) {
   return {
     nome: `Produto QA ${Date.now()}`,
