@@ -1,13 +1,14 @@
 import LoginPage from '../../support/pages/LoginPage'
 import { disposableUser } from '../../support/testData'
 import { REDIRECT_TIMEOUT_MS } from '../../support/constants'
+import { apiUrl } from '../../support/api'
 
 describe('Login @e2e @auth', () => {
   let userId
 
   afterEach(() => {
     if (userId) {
-      cy.request('DELETE', `${Cypress.expose('apiUrl')}/usuarios/${userId}`)
+      cy.deleteUser(userId)
       userId = null
     }
   })
@@ -16,7 +17,7 @@ describe('Login @e2e @auth', () => {
   it('logs in with valid credentials and redirects to /home @smoke @p0', () => {
     const user = disposableUser()
 
-    cy.request('POST', `${Cypress.expose('apiUrl')}/usuarios`, user).then((res) => {
+    cy.request('POST', apiUrl('/usuarios'), user).then((res) => {
       userId = res.body._id
 
       LoginPage.visit().login(user.email, user.password)

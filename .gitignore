@@ -10,7 +10,6 @@ ServeRest/
 ServeRestFront/
 
 # Cypress artifacts (generated on each run)
-cypress/videos/
 cypress/screenshots/
 cypress/downloads/
 cypress/reports/
