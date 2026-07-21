@@ -1,4 +1,4 @@
-name: tests
+name: Cypress E2E & API Tests
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
 
 jobs:
   cypress-run:
+    name: Run 6 P0 scenarios (E2E + API)
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
