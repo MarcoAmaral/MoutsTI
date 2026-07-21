@@ -5,7 +5,8 @@
   "author": "Marco Amaral",
   "private": true,
   "scripts": {
-    "postinstall": "npm run report:clean",
+    "postinstall": "npm run clean:all",
+    "clean:all": "rimraf cypress/reports cypress/videos cypress/screenshots",
     "cypress:open": "cypress open",
     "cypress:run": "rimraf cypress/reports/mocha && cypress run; npm run report:build",
     "test:with-image-capture": "rimraf cypress/reports/mocha && cypress run --expose captureAll=true; npm run report:build",

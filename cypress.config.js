@@ -1,5 +1,4 @@
 const { defineConfig } = require('cypress')
-const fs = require('fs')
 
 module.exports = defineConfig({
   allowCypressEnv: false,
@@ -16,15 +15,14 @@ module.exports = defineConfig({
     baseUrl: 'https://front.serverest.dev',
     supportFile: 'cypress/support/e2e.js',
     specPattern: 'cypress/e2e/**/*.cy.js',
-    setupNodeEvents(on, config) {
-      // Default: keep the video only for specs with failures.
-      // Pass --expose captureAll=true to keep every run's video regardless of outcome.
-      on('after:spec', (_spec, results) => {
-        if (config.expose && config.expose.captureAll) return
-        if (results && results.video && results.stats.failures === 0) {
-          fs.unlinkSync(results.video)
-        }
-      })
+    setupNodeEvents(_on, config) {
+      // One folder per run (all specs in this run share it), so nothing
+      // gets deleted or overwritten and every file traces back to a
+      // single run. Videos/screenshots accumulate here between runs;
+      // `npm install` wipes them via the postinstall clean:all script.
+      const runId = new Date().toISOString().replace(/[:.]/g, '-')
+      config.videosFolder = `cypress/videos/${runId}`
+      config.screenshotsFolder = `cypress/screenshots/${runId}`
       return config
     },
   },
