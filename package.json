@@ -1,0 +1,26 @@
+{
+  "name": "moutsti-qa-tests",
+  "version": "0.1.0",
+  "description": "Mouts TI QA technical assignment — Cypress E2E and API test automation for ServeRest",
+  "author": "Marco Amaral",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm run report:clean",
+    "cypress:open": "cypress open",
+    "cypress:run": "rimraf cypress/reports/mocha && cypress run; npm run report:build",
+    "report:build": "npm run report:merge && npm run report:generate && rimraf cypress/reports/mocha cypress/reports/report.json",
+    "report:merge": "mochawesome-merge cypress/reports/mocha/*.json > cypress/reports/report.json",
+    "report:generate": "marge cypress/reports/report.json --reportDir cypress/reports --inline --reportFilename \"report-[datetime]\" --timestamp isoDateTime",
+    "report:clean": "rimraf cypress/reports",
+    "report:open": "http-server cypress/reports -o -p 4873",
+    "test": "npm run cypress:run"
+  },
+  "devDependencies": {
+    "cypress": "^15.18.1",
+    "http-server": "^14.1.1",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.1.1",
+    "mochawesome-report-generator": "^6.3.2",
+    "rimraf": "^6.1.3"
+  }
+}
