@@ -4,7 +4,7 @@ export function uniqueEmail(prefix = 'qa.moutsti') {
 
 export function disposableUser(overrides = {}) {
   return {
-    nome: 'QA Automation',
+    nome: 'QA Automation - Marco Amaral',
     email: uniqueEmail(),
     password: 'Senha123!',
     administrador: 'false',
@@ -16,7 +16,7 @@ export function disposableProduct(overrides = {}) {
   return {
     nome: `Produto QA ${Date.now()}`,
     preco: 100,
-    descricao: 'Produto de teste descartável',
+    descricao: 'Produto de teste descartável - Marco Amaral',
     quantidade: 1,
     ...overrides,
   }
