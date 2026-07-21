@@ -12,7 +12,7 @@ Cypress + JavaScript test automation for [ServeRest](https://serverest.dev/) (AP
 | 22 formal test cases designed and manually executed at least once | ✅ Done |
 | 6 P0 scenarios automated in Cypress | ✅ Done — passing locally, see `TRACEABILITY-MATRIX.md` |
 | Dev/Staging/Production branch structure | ✅ Done |
-| CI pipeline running the suite | ⏳ Planned |
+| CI pipeline running the suite | ✅ Done — green on `dev`, see `.github/workflows/tests.yml` |
 
 This README describes the finished QA analysis and the automation plan built on top of it. Where something is not yet implemented, it's marked as such rather than described as done — see `TEST-STRATEGY.md` §5 (Entry/Exit criteria) for what "done" means on this project.
 

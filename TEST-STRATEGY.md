@@ -78,8 +78,8 @@ Risk score = **Likelihood (1–5) × Impact (1–5)**, applied per candidate sce
 - [x] Traced in `TRACEABILITY-MATRIX.md` before the spec is written
 
 **Exit (suite considered done for this delivery):**
-- [ ] All 6 P0 scenarios automated and passing on `staging` and `main` CI tiers — implemented and passing locally (`npm test`); CI pipeline not yet wired
-- [ ] Zero flaky runs across 3 consecutive CI executions — not applicable until CI exists; locally, one flake was found and fixed (see `TRACEABILITY-MATRIX.md`)
+- [ ] All 6 P0 scenarios automated and passing on `staging` and `main` CI tiers — CI is wired (`.github/workflows/tests.yml`) and passed green on its first run (all 7 test cases, `dev` tier via PR #4); not yet promoted to `staging`/`main`
+- [ ] Zero flaky runs across 3 consecutive CI executions — only 1 CI run so far (green); need 2 more before calling this closed. One flake was found and fixed locally pre-CI (see `TRACEABILITY-MATRIX.md`)
 - [x] All 16 non-automated scenarios manually executed at least once, with result recorded in their `TC-*.md` file
 - [x] No credentials/secrets present anywhere in the repo (manual review + `.gitignore` check)
 
