@@ -5,7 +5,7 @@ area: Produtos
 type: API
 priority: P0
 automate: true
-status: planned
+status: automated
 ---
 
 # TC-PRD-001 — `POST /produtos` without admin rights → 401 / 403

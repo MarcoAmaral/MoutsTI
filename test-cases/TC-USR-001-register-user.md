@@ -5,7 +5,7 @@ area: Usuários
 type: Frontend
 priority: P0
 automate: true
-status: planned
+status: automated
 ---
 
 # TC-USR-001 — Register a new user via UI → success + redirect

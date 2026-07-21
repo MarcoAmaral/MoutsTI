@@ -5,7 +5,7 @@ area: Usuários
 type: API
 priority: P0
 automate: true
-status: planned
+status: automated
 ---
 
 # TC-USR-002 — `POST /usuarios` success

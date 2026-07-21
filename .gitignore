@@ -7,11 +7,13 @@ CLAUDE.md
 
 # Third-party app-under-test, cloned locally for dev-tier isolation — not our code
 ServeRest/
+ServeRestFront/
 
 # Cypress artifacts (generated on each run)
 cypress/videos/
 cypress/screenshots/
 cypress/downloads/
+cypress/reports/
 
 # Env / secrets
 .env

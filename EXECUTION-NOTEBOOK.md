@@ -23,7 +23,7 @@ This is a **manual execution notebook**: procedures detailed enough that any QA 
 **How it relates to the other documents:**
 - [`test-cases/TC-*.md`](test-cases/) — the formal test case specs (objective, preconditions, source grounding). These are the **what and why**.
 - This notebook — the same 6 scenarios broken into individual clickable/callable steps with a result field to fill in. This is the **how**, for a human running it by hand.
-- [`cypress/`](cypress/) (once implemented) — the automated version of the same 6 scenarios. Same assertions, machine-executed.
+- [`cypress/e2e/`](cypress/e2e/) — the automated version of the same 6 scenarios. Same assertions, machine-executed. Run via `npm test`.
 
 Every procedure below traces back to its source `TC-*` file and to the `ET-001` exploratory session line that first confirmed the expected behavior live.
 
@@ -173,7 +173,7 @@ Every procedure below traces back to its source `TC-*` file and to the `ET-001` 
 |---|---|
 | **Executed by** | _______________________________________________ |
 | **Execution date** | _______________________________________________ |
-| **Environment** | ☐ staging (`front.serverest.dev` / `serverest.dev`) ☐ dev (local) |
+| **Environment** | `front.serverest.dev` / `serverest.dev` (public instance) |
 | **Total procedures** | 6 |
 | **Passed** | ___ |
 | **Failed** | ___ |

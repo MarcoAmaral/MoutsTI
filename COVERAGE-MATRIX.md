@@ -8,12 +8,12 @@ Every scenario here has a corresponding formal test case in [`test-cases/`](test
 
 | ID | Area | Type | Scenario | +/− | L | I | Score | Priority | Automate? | Status |
 |---|---|---|---|---|---|---|---|---|---|---|
-| TC-USR-002 | Usuários | API | `POST /usuarios` success | + | 5 | 5 | 25 | **P0** | ✅ Yes | Planned² |
-| TC-AUTH-001 | Auth | Frontend | Login (client, valid) → redirect | + | 4 | 5 | 20 | **P0** | ✅ Yes | Planned² |
-| TC-USR-003 | Usuários | API | `POST /usuarios` duplicate email → 400 | − | 4 | 5 | 20 | **P0** | ✅ Yes | Planned² |
-| TC-AUTH-002 | Auth | Frontend | Login (invalid) → error, no redirect | − | 4 | 4 | 16 | **P0** | ✅ Yes | Planned² |
-| TC-USR-001 | Usuários | Frontend | Register user via UI → success + redirect | + | 4 | 4 | 16 | **P0** | ✅ Yes | Planned² |
-| TC-PRD-001 | Produtos | API | `POST /produtos` without admin rights → 401/403 | − | 3 | 5 | 15 | **P0** | ✅ Yes | Planned² |
+| TC-USR-002 | Usuários | API | `POST /usuarios` success | + | 5 | 5 | 25 | **P0** | ✅ Yes | Automated² |
+| TC-AUTH-001 | Auth | Frontend | Login (client, valid) → redirect | + | 4 | 5 | 20 | **P0** | ✅ Yes | Automated² |
+| TC-USR-003 | Usuários | API | `POST /usuarios` duplicate email → 400 | − | 4 | 5 | 20 | **P0** | ✅ Yes | Automated² |
+| TC-AUTH-002 | Auth | Frontend | Login (invalid) → error, no redirect | − | 4 | 4 | 16 | **P0** | ✅ Yes | Automated² |
+| TC-USR-001 | Usuários | Frontend | Register user via UI → success + redirect | + | 4 | 4 | 16 | **P0** | ✅ Yes | Automated² |
+| TC-PRD-001 | Produtos | API | `POST /produtos` without admin rights → 401/403 | − | 3 | 5 | 15 | **P0** | ✅ Yes | Automated² |
 | TC-AUTH-003 | Auth | Frontend | Login (admin, valid) → redirect | + | 3 | 4 | 12 | P1 | No | Manually verified |
 | TC-CART-001 | Carrinhos | API | `POST /carrinhos` success | + | 3 | 4 | 12 | P1 | No | Manually verified |
 | TC-AUTH-004 | Auth | API | `POST /login` valid → 200 + token | + | 3 | 4 | 12 | P1¹ | No | Manually verified |
@@ -33,16 +33,16 @@ Every scenario here has a corresponding formal test case in [`test-cases/`](test
 
 ¹ Scored 12 by the raw formula, but deliberately not selected among the automated 6: the same `/login` contract (valid + invalid credentials) is already exercised end-to-end by `TC-AUTH-001`/`TC-AUTH-002` through the UI, which calls the identical API underneath. A standalone API-level login test would be marginally useful as a contract check but is redundant coverage, not missing coverage — documented and manually verified instead of automated, to avoid testing the same behavior twice for the sake of a round number.
 
-² **Planned, not yet implemented** — the exact expected behavior for all 6 was verified live in `ET-001` and the risk/priority analysis is final, but the Cypress specs themselves haven't been written yet. Updating this to "Automated" the moment each spec exists and passes — not before, per this project's verification-honesty rule (no "done" claims without evidence).
+² **Automated, verified locally** — all 6 Cypress specs exist (see `TRACEABILITY-MATRIX.md` for file mapping), run against the real public instance, and pass. Not yet wired into a CI pipeline (no automated-test workflow exists yet, only `release-please.yml`) — until then, "automated" means verified via local `npm test` runs, not a CI gate. Updating this note once CI is wired, per this project's verification-honesty rule.
 
 ## Summary
 
 | Priority | Count | Automated |
 |---|---|---|
-| P0 (Critical) | 6 | 0 / 6 (planned, specs not yet written) |
+| P0 (Critical) | 6 | 6 / 6 (implemented, passing locally; CI pending) |
 | P1 (High) | 9 | 0 / 9 (manually verified) |
 | P2 (Medium) | 6 | 0 / 6 (manually verified) |
 | P3 (Low) | 1 | 0 / 1 (manually verified) |
-| **Total** | **22** | **22 / 22 documented + executed at least once; 6 planned for automation, 0 implemented so far** |
+| **Total** | **22** | **22 / 22 documented + executed at least once; 6 automated and passing locally** |
 
 See [`TRACEABILITY-MATRIX.md`](TRACEABILITY-MATRIX.md) for how the 6 automated scenarios map from risk → business rule → spec file.

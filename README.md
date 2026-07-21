@@ -10,8 +10,9 @@ Cypress + JavaScript test automation for [ServeRest](https://serverest.dev/) (AP
 |---|---|
 | Test strategy, risk analysis, coverage matrix | ✅ Done |
 | 22 formal test cases designed and manually executed at least once | ✅ Done |
-| 6 P0 scenarios automated in Cypress | ⏳ Planned — see `TRACEABILITY-MATRIX.md` |
-| Dev/Staging/Production branch structure + CI | ⏳ Planned |
+| 6 P0 scenarios automated in Cypress | ✅ Done — passing locally, see `TRACEABILITY-MATRIX.md` |
+| Dev/Staging/Production branch structure | ✅ Done |
+| CI pipeline running the suite | ⏳ Planned |
 
 This README describes the finished QA analysis and the automation plan built on top of it. Where something is not yet implemented, it's marked as such rather than described as done — see `TEST-STRATEGY.md` §5 (Entry/Exit criteria) for what "done" means on this project.
 
@@ -25,6 +26,16 @@ This README describes the finished QA analysis and the automation plan built on 
 | Read the formal test cases (all 22, including manual ones) | [`test-cases/`](test-cases/) |
 | See the manual exploration session that grounded every assertion | [`exploratory-charters/ET-001-manual-exploration.md`](exploratory-charters/ET-001-manual-exploration.md) |
 | Manually re-execute the 6 automated scenarios step-by-step (onboarding, sign-off) | [`EXECUTION-NOTEBOOK.md`](EXECUTION-NOTEBOOK.md) |
+| Read or run the automated specs | [`cypress/e2e/`](cypress/e2e/) |
+
+## How to run
+
+```bash
+npm install       # installs Cypress + reporting tooling, and clears any old report
+npm test          # runs all 6 specs against the real public instance, then builds a report
+```
+
+Each run generates a uniquely timestamped report — `cypress/reports/report-<datetime>.html` — instead of overwriting the previous one. To browse past reports: `npm run report:open` (serves `cypress/reports/` on `localhost:4873`). Reports aren't committed (`.gitignore`); a fresh `npm install` clears them out entirely.
 
 ## Why 22 scenarios, only 6 automated
 
@@ -41,15 +52,9 @@ The assignment asks for 3 E2E + 3 API scenarios. Source review of `ServeRest/Ser
 - Cypress + JavaScript
 - Release Please + Conventional Commits for versioning/changelog (`.github/workflows/release-please.yml`)
 
-## Environments (planned)
+## Environments
 
-| Tier | Frontend | API | Purpose |
-|---|---|---|---|
-| dev (local) | Patched fork of `ServeRest/front`, `localhost:3001` | Self-hosted `ServeRest/ServeRest`, `localhost:3000` | Isolated local iteration |
-| staging | `front.serverest.dev` | `serverest.dev` | Pre-merge regression gate |
-| production (`main`) | `front.serverest.dev` | `serverest.dev` | Final gate, Release Please cuts a version |
-
-Full rationale in `TEST-STRATEGY.md` §2.
+All tests run against the real public targets on every branch tier — `front.serverest.dev` (frontend) and `serverest.dev` (API). The `dev`/`staging`/`main` branches reflect promotion/review discipline, not different hosted environments. Local source clones are kept only as a reference for grounding assertions, not executed. Full rationale in `TEST-STRATEGY.md` §2.
 
 ## Security
 
