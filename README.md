@@ -1,5 +1,7 @@
 # ServeRest QA Automation
 
+[![Cypress E2E & API Tests](https://github.com/MarcoAmaral/MoutsTI/actions/workflows/cypress-tests.yml/badge.svg?branch=main)](https://github.com/MarcoAmaral/MoutsTI/actions/workflows/cypress-tests.yml)
+
 Cypress + JavaScript test automation for [ServeRest](https://serverest.dev/) (API) and [front.serverest.dev](https://front.serverest.dev/) (frontend) — a Senior QA Tester technical assignment.
 
 **Author:** Marco Amaral — Senior QA
